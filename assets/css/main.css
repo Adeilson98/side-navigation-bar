@@ -19,9 +19,14 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 240px;
+    width: 78px;
     background: #11101D;
     padding: 6px 14px;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active {
+    width: 240px;
 }
 
 .sidebar .logo_content .logo {
@@ -30,6 +35,14 @@ body {
     height: 50px;
     width: 100%;
     align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo_content .logo {
+    opacity: 1;
+    pointer-events: none;
 }
 .logo_content .logo i {
     font-size: 28px;
@@ -44,7 +57,7 @@ body {
 .sidebar #btn {
     color: #FFF;
     position: absolute;
-    left: 90%;
+    left: 50%;
     top: 6px;
     font-size: 20px;
     height: 50px;
@@ -53,6 +66,10 @@ body {
     line-height: 50px;
     transform: translateX(-50%);
     cursor: pointer;
+}
+
+.sidebar.active #btn {
+    left: 90%;
 }
 
 .sidebar ul {
@@ -75,14 +92,19 @@ body {
     background-color: white;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     left: 122px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    transform: translate(-50% , -50%);
     border-radius: 6px;
     line-height: 35px;
     text-align: center;
     transition: 0s;
     opacity: 0;
     pointer-events: none;
+    display: block;
+}
+
+.sidebar.active ul li .tooltip {
+    display: none;
 }
 
 .sidebar ul li:hover .tooltip {
@@ -100,17 +122,29 @@ body {
     border-radius: 12px;
     outline: none;
     border: none;
-    background-color: #1D1B31;
+    background-color: transparent;
     padding-left: 50px;
     padding-right: 10px;
     font-size: 18px;
     color: white;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active ul li input {
+    background-color: #1D1B31;
 }
 .sidebar ul li .bx-search{
     position: absolute;
     z-index: 99;
     color: white;
     font-size: 22px;
+    cursor: pointer;
+    transition: all 0.5 ease;
+}
+
+.sidebar ul li .bx-search:hover {
+    background-color: white;
+    color: #1D1B31;
 }
 
 .sidebar ul li a {
@@ -120,6 +154,7 @@ body {
     text-decoration: none;
     transition: all 0.4s ease;
     border-radius: 12px;
+    white-space: nowrap;
 }
 
 .sidebar ul li a:hover {
@@ -135,6 +170,17 @@ body {
     text-align: center;
 }
 
+.sidebar .links_name {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar.active .links_name {
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.5s ease;
+}
+
 .sidebar .profile_content {
     position: absolute;
     color: white;
@@ -147,13 +193,26 @@ body {
     position: relative;
     padding: 10px 6px;
     height: 60px;
-    background-color: #1D1B31;
+    background: none;
     border-radius: 10px 10px 0 0;
+    transition: all 0.4s ease;
+}
+
+.sidebar.active .profile_content .profile {
+    background-color: #1D1B31;
 }
 
 .profile_content .profile .profile_details{
     display: flex;
     align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.sidebar.active .profile .profile_details{
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .profile .profile_details i {
@@ -179,24 +238,38 @@ body {
 
 .profile #log_out {
     position: absolute;
-    left: 88%;
+    left: 50%;
     bottom: 5px;
     transform: translateX(-50%);
     min-width: 50px;
     line-height: 50px;
     font-size: 20px;
     border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .profile #log_out {
+    left: 88%;
+    background-color: #1D1B31;
 }
 
 .home_content {
     position: absolute;
     height: 100%;
-    width: calc(100% - 240px);
-    left: 240px;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
 }
 
 .home_content .text {
     font-size: 25px;
     font-weight: 500;
     margin: 12px;
+}
+
+.sidebar.active ~ .home_content {
+    width: calc(1005 - 240px);
+    left: 240px;
 }
